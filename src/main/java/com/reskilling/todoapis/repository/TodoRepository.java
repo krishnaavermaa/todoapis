@@ -12,5 +12,10 @@ import com.reskilling.todoapis.model.User;
 public interface TodoRepository extends JpaRepository<Todo	, Long>{
 	
 	List<Todo> findByUser(User user);
+	
+	Todo findByTodoId(Long todoId);
+	
+	
+	
 
 }
