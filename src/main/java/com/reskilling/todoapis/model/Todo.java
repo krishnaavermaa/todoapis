@@ -17,9 +17,10 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
-@Data
+@ToString
 @Table(name="todo")
 public class Todo {
 	
@@ -93,9 +94,9 @@ public class Todo {
 		this.isCompleted = isCompleted;
 	}
 
-//	public Long getTodoId() {
-//		return todoId;
-//	}
+	public Long getTodoId() {
+		return todoId;
+	}
 	
 
 }

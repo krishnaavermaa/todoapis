@@ -18,7 +18,7 @@ import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtility {
-	private final String SECRET="reskilling123";
+	private final String SECRET="itsNotAnySecretRereskillingProject";
 		
 	public String generateToken(UserDetails userDetails) {
 		Map<String, Object> claims=new HashMap<>();
@@ -37,6 +37,7 @@ public class JwtUtility {
 		final String username=extractUsername(token);
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
+	
 	
 	private boolean isTokenExpired(String token) {
 		return extractExpiration(token).before(new Date());

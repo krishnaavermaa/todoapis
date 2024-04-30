@@ -1,6 +1,5 @@
 package com.reskilling.todoapis.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,17 +7,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.ToString;
 
 import java.util.Collection;
 import java.util.Collections;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
+@ToString
 @Table(name = "user")
 public class User implements UserDetails {
 
@@ -33,6 +35,7 @@ public class User implements UserDetails {
 	@NotBlank(message = "Password cannot be blank")
 	@Length(min = 8, message = "Password should be minimum 8 characters")
 	private String password;
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
