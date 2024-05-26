@@ -5,6 +5,8 @@ package com.reskilling.todoapis.model;
 import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -38,10 +41,11 @@ public class Todo {
 	private String description;
 	
 	@NotNull(message = "Invalid Date entered")
-	@Future(message = "Date must be greater than current date")
+	@FutureOrPresent( message = "Date must not be in past")
+	@DateTimeFormat(iso = ISO.DATE )
 	private LocalDate endDate;
 	
-	private boolean isCompleted;
+	private Boolean isCompleted;
 	
 	@Range(min = 0, max=10)
 	private Long priority=10L;
@@ -54,7 +58,7 @@ public class Todo {
 		this.priority = priority;
 	}
 
-	public User getUser() {
+	public User retrieveUser() {
 		return user;
 	}
 
@@ -86,7 +90,7 @@ public class Todo {
 		this.endDate = endDate;
 	}
 
-	public boolean isCompleted() {
+	public Boolean isCompleted() {
 		return isCompleted;
 	}
 
